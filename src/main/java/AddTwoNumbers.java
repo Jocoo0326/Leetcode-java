@@ -51,7 +51,7 @@ class AddTwoNumbers {
   }
 
   public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-    ListNode left = l1, right = l2, head = null, tail = null;
+    ListNode left = l1, right = l2, dummyHead = new ListNode(0), cur = dummyHead;
     int carry = 0;
 
     do {
@@ -60,19 +60,11 @@ class AddTwoNumbers {
       int sum = l + r + carry;
       carry = sum / 10;
       sum = sum % 10;
-      ListNode num = new ListNode(sum);
-      if (tail == null) {
-        tail = num;
-      } else {
-        tail.next = num;
-      }
-      tail = tail.next;
-      if (head == null) {
-        head = tail;
-      }
+      cur.next = new ListNode(sum);
+      cur = cur.next;
       left = left != null ? left.next : null;
       right = right != null ? right.next : null;
     } while (left != null || right != null || carry == 1);
-    return head;
+    return dummyHead.next;
   }
 }
