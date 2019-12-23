@@ -1,15 +1,17 @@
+import java.util.HashMap;
+
 class LongestSubstringWithoutRepeatingCharacters {
   public static void main(String[] args) {
-    // Assert.assertEquals(lengthOfLongestSubstring(null), 0);
-    // Assert.assertEquals(lengthOfLongestSubstring(""), 0);
-    // Assert.assertEquals(lengthOfLongestSubstring(" "), 1);
+    Assert.assertEquals(lengthOfLongestSubstring(null), 0);
+    Assert.assertEquals(lengthOfLongestSubstring(""), 0);
+    Assert.assertEquals(lengthOfLongestSubstring(" "), 1);
     Assert.assertEquals(lengthOfLongestSubstring("abcabcbb"), 3);
     Assert.assertEquals(lengthOfLongestSubstring("bbbbb"), 1);
     Assert.assertEquals(lengthOfLongestSubstring("pwwkew"), 3);
     Assert.assertEquals(lengthOfLongestSubstring("pasdf"), 5);
   }
 
-  public static int lengthOfLongestSubstring(String s) {
+  public static int alengthOfLongestSubstring(String s) {
     int n = s.length(), ans = 0;
     int[] index = new int[128]; // current index of character
     // try to extend the range [i, j]
@@ -21,25 +23,21 @@ class LongestSubstringWithoutRepeatingCharacters {
     return ans;
   }
 
-  public static int alengthOfLongestSubstring(String s) {
+  public static int lengthOfLongestSubstring(String s) {
     if (s == null || s.length() == 0) {
       return 0;
     }
     if (s.length() == 1) {
       return 1;
     }
-    int l = 0, len = 1;
-    for (int i = 1; i < s.length(); i++) {
-      int curLen = i - l;
-      int idx = s.indexOf((int) s.charAt(i), l);
-      if (idx > -1 && idx < i) {
-        l = idx + 1;
-      } else {
-        curLen++;
+    int l = 0, len = 0;
+    HashMap<Character, Integer> map = new HashMap<>();
+    for (int i = 0; i < s.length(); i++) {
+      if (map.containsKey(s.charAt(i))) {
+        l = Math.max(map.get(s.charAt(i)), l);
       }
-      if (curLen > len) {
-        len = curLen;
-      }
+      len = Math.max(i + 1 - l, len);
+      map.put(s.charAt(i), i + 1);
     }
     return len;
   }

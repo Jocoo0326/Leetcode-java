@@ -1,40 +1,8 @@
 class SwapNodesInPairs {
   public static void main(String[] args) {
-    int[] nodes = {2}; //, 4, 3, 5, 7, 8};
-    ListNode l = null, lm = null;
-    for (int i = 0; i < nodes.length; i++) {
-      ListNode num = new ListNode(nodes[i]);
-      if (lm == null) {
-        lm = num;
-      } else {
-        lm.next = num;
-      }
-      if (l == null) {
-        l = lm;
-      }
-      lm = num;
-    }
-    printListNode(swapPairs(l));
-  }
-
-  public static void printListNode(ListNode head) {
-    ListNode p = head;
-    while (p != null) {
-      if (p != head) {
-        System.out.print("->");
-      }
-      System.out.print(p.val);
-      p = p.next;
-    }
-    System.out.print("\n");
-  }
-
-  public static class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) {
-      val = x;
-    }
+    int[] nodes = {2, 4, 3, 5, 7, 9, 10}; //, 4, 3, 5, 7, 8};
+    ListNode l = ListNode.createListNode(nodes);
+    Assert.assertEquals(swapPairs(l).toString(), "4->2->5->3->9->7->10");
   }
 
   public static ListNode swapPairs(ListNode head) {
