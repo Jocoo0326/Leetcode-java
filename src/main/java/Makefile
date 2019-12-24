@@ -6,6 +6,9 @@ endef
 MedianOfTwoSortedArrays:
 	$(call run_java_file,MedianOfTwoSortedArrays)
 
+BinarySearch:
+	$(call run_java_file,BinarySearch)
+
 MergeKSortedLists:
 	$(call run_java_file,MergeKSortedLists)
 
