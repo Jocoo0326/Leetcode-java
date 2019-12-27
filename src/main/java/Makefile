@@ -3,8 +3,14 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+LongestPalindromicSubstring:
+	$(call run_java_file,LongestPalindromicSubstring)
+
 MedianOfTwoSortedArrays:
 	$(call run_java_file,MedianOfTwoSortedArrays)
+
+QuickSort:
+	$(call run_java_file,QuickSort)
 
 BinarySearch:
 	$(call run_java_file,BinarySearch)

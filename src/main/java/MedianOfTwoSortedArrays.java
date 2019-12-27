@@ -50,7 +50,7 @@ class MedianOfTwoSortedArrays {
     return (sum[0] + sum[1]) * (takeTwo ? 0.5 : 1.0);
   }
 
-  public static double findMedianSortedArrays(int[] A, int[] B) {
+  public static double bfindMedianSortedArrays(int[] A, int[] B) {
     int m = A.length;
     int n = B.length;
     if (m > n) { // to ensure m<=n
@@ -68,7 +68,7 @@ class MedianOfTwoSortedArrays {
 
       if (i < iMax && B[j - 1] > A[i]) { // i < m -> j > 0;i>=0 -> j<=n
         iMin = i + 1; // i is too small
-      } else if (i > iMin && A[i - 1] > B[j]) { //
+      } else if (i > iMin && A[i - 1] > B[j]) { // i>0 -> j < (m+n+1)/2<=(2n+1)/2
         iMax = i - 1; // i is too big
       } else { // i is perfect
         int maxLeft = 0;
@@ -93,6 +93,52 @@ class MedianOfTwoSortedArrays {
         }
 
         return (maxLeft + minRight) / 2.0;
+      }
+    }
+    return 0.0;
+  }
+
+  public static double findMedianSortedArrays(int[] A, int[] B) {
+    int m = A.length, n = B.length;
+    if (m > n) {
+      int[] tmp = A;
+      A = B;
+      B = tmp;
+    }
+    m = A.length;
+    n = B.length;
+    int l = 0, h = m, halfLen = (m + n + 1) >> 1;
+    boolean odd = (m + n) % 2 == 1;
+    while (l <= h) {
+      int i = (l + h) >> 1;
+      int j = halfLen - i;
+      if (i > 0 && A[i - 1] > B[j]) { // i > 0-> j < n
+        h = i - 1;
+      } else if (i < m && B[j - 1] > A[i]) { // i < m->j>(n-m+1)/2->j>0
+        l = i + 1;
+      } else {
+        int leftMax = 0;
+        if (i == 0) {
+          leftMax = B[j - 1];
+          ;
+        } else if (j == 0) {
+          leftMax = A[i - 1];
+        } else {
+          leftMax = Math.max(A[i - 1], B[j - 1]);
+        }
+        if (odd) {
+          return leftMax;
+        }
+        int rightMin = 0;
+        if (i == m) {
+          rightMin = B[j];
+        } else if (j == n) {
+          rightMin = A[i];
+        } else {
+          rightMin = Math.min(A[i], B[j]);
+        }
+
+        return (leftMax + rightMin) * 0.5;
       }
     }
     return 0.0;
