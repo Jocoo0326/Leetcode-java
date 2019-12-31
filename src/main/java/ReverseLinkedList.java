@@ -21,12 +21,12 @@ class ReverseLinkedList {
   }
 
   public static ListNode reverseListRecursive(ListNode head) {
-    if (head == null || head.next == null)
+    if (head == null || head.next == null) {
       return head;
-    final ListNode old = head.next;
-    ListNode tail = reverseListRecursive(old);
+    }
+    ListNode t = reverseListRecursive(head.next);
     head.next.next = head;
     head.next = null;
-    return tail;
+    return t;
   }
 }

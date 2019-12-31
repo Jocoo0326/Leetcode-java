@@ -3,6 +3,12 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+ReverseInteger:
+	$(call run_java_file,ReverseInteger)
+
+ZigZagConversion:
+	$(call run_java_file,ZigZagConversion)
+
 LongestPalindromicSubstring:
 	$(call run_java_file,LongestPalindromicSubstring)
 

@@ -2,10 +2,75 @@ class LongestPalindromicSubstring {
   public static void main(String[] args) {
     Assert.assertEquals(longestPalindrome("babad"), "bab");
     Assert.assertEquals(longestPalindrome("cbbd"), "bb");
-    // System.out.println("text".substring(1, 3));
   }
 
-  public static String longestPalindrome(String s) {}
+  private static char[] addSeparators(String s) {
+    char[] nc = new char[s.length() * 2 + 1];
+    for (int i = 0; i < nc.length - 1; i = i + 2) {
+      nc[i] = '#';
+      nc[i + 1] = s.charAt(i / 2);
+    }
+    nc[nc.length - 1] = '#';
+    return nc;
+  }
+
+  private static String removeSeparators(char[] ca, int c, int r) {
+    StringBuilder sb = new StringBuilder();
+    for (int i = c - r; i < c + r + 1; i++) {
+      if (ca[i] != '#') {
+        sb.append(ca[i]);
+      }
+    }
+    return sb.toString();
+  }
+
+  public static String longestPalindrome(String s) {
+    if (s == null || s.length() < 2) {
+      return s;
+    }
+    char[] ns = addSeparators(s);
+
+    int[] rd = new int[s.length() * 2 + 1];
+    int c = 0, r = 0, l = 0, h = 0;
+    for (int i = 1; i < ns.length - 1; i++) {
+      if (i > r) {
+        rd[i] = 0;
+        l = i - 1;
+        h = i + 1;
+      } else {
+        int iMirror = 2 * c - i;
+        if (iMirror >= 0) {
+          if (rd[iMirror] < r - i) { // == might expand outer right r
+            rd[i] = rd[iMirror];
+            l = -1;
+          } else {
+            rd[i] = r - i;
+            l = i - (r - i) - 1;
+            h = i + (r - i) + 1;
+          }
+        }
+      }
+      while (l >= 0 && h < ns.length && ns[l] == ns[h]) {
+        rd[i]++;
+        l--;
+        h++;
+      }
+
+      if (i + rd[i] > r) { // replace last palindrome
+        c = i;
+        r = c + rd[i];
+      }
+    }
+    int len = -1, idx = -1;
+    for (int i = 0; i < rd.length; i++) {
+      if (rd[i] > len) {
+        len = rd[i];
+        idx = i;
+      }
+    }
+
+    return removeSeparators(ns, idx, len);
+  }
 
   public static String blongestPalindrome(String s) {
     if (s == null || s.length() < 2) {
