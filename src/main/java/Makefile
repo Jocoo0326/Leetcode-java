@@ -3,6 +3,9 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+StringToInteger:
+	$(call run_java_file,StringToInteger)
+
 ReverseInteger:
 	$(call run_java_file,ReverseInteger)
 
