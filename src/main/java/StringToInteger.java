@@ -1,4 +1,4 @@
-class StringToInteger {
+class2 StringToInteger {
   public static void main(String[] args) {
     Assert.assertEquals(myAtoi("42"), 42);
     Assert.assertEquals(myAtoi("     -42"), -42);

@@ -3,6 +3,9 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+PalindromeNumber:
+	$(call run_java_file,PalindromeNumber)
+
 StringToInteger:
 	$(call run_java_file,StringToInteger)
 
