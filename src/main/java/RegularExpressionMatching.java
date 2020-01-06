@@ -14,54 +14,94 @@ class RegularExpressionMatching {
   }
 
   public static boolean isMatch(String s, String p) {
-    if (s == null || s == "" || p == null || p == "") {
-      return true;
+    // recursive
+    // memo = new Result[s.length() + 1][p.length() + 1];
+    // return isMatchRecursive(s, p, s.length(), p.length());
+    return isMatchDp(s, p);
+  }
+
+  public static boolean isMatchDp(String s, String p) {
+    boolean dp[][] = new boolean[s.length() + 1][p.length() + 1];
+    for (int i = 0; i < s.length() + 1; i++) {
+      dp[i][0] = i == 0;
     }
-    final char[] sc = s.toCharArray();
-    final char[] pc = p.toCharArray();
-    int i = 0, j = 0;
-    while (i < pc.length) {
-      final char c = pc[i];
-      if (c >= 'a' && c <= 'z') {
-        if (j < sc.length && sc[j] == c) {
-          j++;
-        } else {
-          if (!(i + 1 < pc.length && pc[i + 1] == '*')) {
-            return false;
-          }
-        }
-      } else if (c == '.') {
-        j++;
-      } else if (c == '*') {
-        if (i > 0) {
-          final char lc = pc[i - 1];
-          if (lc == '.') {
-            j = sc.length;
+    for (int i = 0; i < s.length() + 1; i++) {
+      for (int j = 1; j < p.length() + 1; j++) {
+        if (i == 0) {
+          boolean b = true;
+          if (j % 2 == 1) {
+            b = false;
           } else {
-            int k = i + 1;
-            int tailCount = 0;
-            while (k < pc.length && pc[k] == lc) {
-              k++;
-              tailCount++;
-            }
-            if (k < pc.length && pc[k] == '*') {
-              tailCount = Math.max(0, tailCount - 2);
-            }
-            int mc = 0;
-            while (j < sc.length && sc[j] == lc) {
-              j++;
-              mc++;
-            }
-            if (mc + 1 < tailCount) {
-              return false;
-            } else {
-              j -= tailCount;
+            for (int k = 1; k < j; k = k + 2) {
+              if (p.charAt(k) != '*') {
+                b = false;
+                break;
+              }
             }
           }
+          dp[i][j] = b;
+          continue;
+        }
+        // i >= 1 && j >= 1
+        final char lsc = s.charAt(i - 1);
+        final char lpc = p.charAt(j - 1);
+        if (lsc == lpc || lpc == '.') {
+          dp[i][j] = dp[i - 1][j - 1];
+        } else if (lpc == '*') {
+          char llpc;
+          dp[i][j] =
+              dp[i][j - 2] || (((llpc = p.charAt(j - 2)) == lsc || llpc == '.') && dp[i - 1][j]);
+        } else {
+          dp[i][j] = false;
         }
       }
-      i++;
     }
-    return i == pc.length && j == sc.length;
+    return dp[s.length()][p.length()];
+  }
+
+  enum Result { TRUE, FALSE }
+
+  private static Result memo[][];
+
+  public static boolean memorize(boolean result, int m, int n) {
+    memo[m][n] = result ? Result.TRUE : Result.FALSE;
+    return result;
+  }
+
+  public static boolean isMatchRecursive(String s, String p, int m, int n) {
+    System.out.println(s + " " + p + " m" + m + " n" + n);
+    if (memo[m][n] != null) {
+      // System.out.println("-------hited------");
+      return memo[m][n] == Result.TRUE;
+    }
+    if (n == 0) {
+      return memorize(m == 0, m, n);
+    }
+    if (m == 0) {
+      if (n % 2 == 1) {
+        return memorize(false, m, n);
+      }
+      for (int i = 1; i < n; i = i + 2) {
+        if (p.charAt(i) != '*') {
+          return memorize(false, m, n);
+        }
+      }
+      return memorize(true, m, n);
+    }
+
+    final char lpc = p.charAt(n - 1);
+    final char lsc = s.charAt(m - 1);
+    // System.out.println(s + " " + p + " " + lsc + " " + lpc + " m" + m + " n" + n);
+
+    if (lpc == lsc || lpc == '.') {
+      return memorize(isMatchRecursive(s, p, m - 1, n - 1), m, n);
+    } else if (lpc == '*') {
+      final char llpc = p.charAt(n - 2);
+      return memorize(isMatchRecursive(s, p, m, n - 2)
+              || ((lsc == llpc || llpc == '.') && isMatchRecursive(s, p, m - 1, n)),
+          m, n);
+    } else {
+      return memorize(false, m, n);
+    }
   }
 }
