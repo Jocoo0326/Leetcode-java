@@ -3,6 +3,9 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+ContainerWithMostWater:
+	$(call run_java_file,ContainerWithMostWater)
+
 RegularExpressionMatching:
 	$(call run_java_file,RegularExpressionMatching)
 
