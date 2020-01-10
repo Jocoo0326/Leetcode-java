@@ -3,6 +3,9 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+LongestCommonPrefix:
+	$(call run_java_file,LongestCommonPrefix)
+
 RomanToInteger:
 	$(call run_java_file,RomanToInteger)
 
