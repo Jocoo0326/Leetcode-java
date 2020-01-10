@@ -3,6 +3,9 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+IntegerToRoman:
+	$(call run_java_file,IntegerToRoman)
+
 ContainerWithMostWater:
 	$(call run_java_file,ContainerWithMostWater)
 
