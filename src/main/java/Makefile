@@ -3,6 +3,9 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+RomanToInteger:
+	$(call run_java_file,RomanToInteger)
+
 IntegerToRoman:
 	$(call run_java_file,IntegerToRoman)
 
