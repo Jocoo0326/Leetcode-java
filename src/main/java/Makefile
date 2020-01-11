@@ -3,6 +3,9 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+ThreeSumCloset:
+	$(call run_java_file,ThreeSumCloset)
+
 ThreeSum:
 	$(call run_java_file,ThreeSum)
 
