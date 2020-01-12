@@ -3,6 +3,9 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+FourSum:
+	$(call run_java_file,FourSum)
+
 LetterCombinationsOfAPhoneNumber:
 	$(call run_java_file,LetterCombinationsOfAPhoneNumber)
 
