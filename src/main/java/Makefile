@@ -3,6 +3,9 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+ValidParentheses:
+	$(call run_java_file,ValidParentheses)
+
 RemoveNthNodeFromEndOfList:
 	$(call run_java_file,RemoveNthNodeFromEndOfList)
 

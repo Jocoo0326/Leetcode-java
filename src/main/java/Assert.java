@@ -16,6 +16,14 @@ class Assert {
     assertEquals(expect.equals(result), String.format("result: %s expect: %s", result, expect));
   }
 
+  public static void assertTrue(boolean exp) {
+    assertEquals(exp, true);
+  }
+
+  public static void assertFalse(boolean exp) {
+    assertEquals(exp, false);
+  }
+
   public static void assertEquals(boolean result, boolean expect) {
     assertEquals(expect == result, String.format("result: %s expect: %s", result, expect));
   }
