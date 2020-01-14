@@ -41,8 +41,19 @@ class Assert {
         assertEquals(false, String.format("result: %s expect: %s", result, expect));
       }
     }
-    boolean b =
-        expect.size() == result.size() && expect.containsAll(result) && result.containsAll(expect);
-    assertEquals(b, String.format("result: %s expect: %s", result, expect));
+    for (T item : result) {
+      if (!expect.contains(item)) {
+        assertEquals(false,
+            String.format("%s contains in result but not in expect\nresult(%d): %s\nexpect(%d): %s",
+                item, result.size(), result, expect.size(), expect));
+      }
+    }
+    for (T item : expect) {
+      if (!result.contains(item)) {
+        assertEquals(false,
+            String.format("%s contains in expect but not in result\nresult(%d): %s\nexpect(%d): %s",
+                item, result.size(), result, expect.size(), expect));
+      }
+    }
   }
 }

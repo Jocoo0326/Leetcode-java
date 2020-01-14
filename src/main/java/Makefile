@@ -3,6 +3,9 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+GenerateParentheses:
+	$(call run_java_file,GenerateParentheses)
+
 MergeTwoSortedLists:
 	$(call run_java_file,MergeTwoSortedLists)
 
