@@ -3,6 +3,9 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+MergeTwoSortedLists:
+	$(call run_java_file,MergeTwoSortedLists)
+
 ValidParentheses:
 	$(call run_java_file,ValidParentheses)
 
