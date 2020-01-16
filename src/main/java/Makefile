@@ -3,6 +3,9 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+RemoveDuplicatesFromSortedArray:
+	$(call run_java_file,RemoveDuplicatesFromSortedArray)
+
 ReverseNodeInKGroup:
 	$(call run_java_file,ReverseNodeInKGroup)
 

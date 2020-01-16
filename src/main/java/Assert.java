@@ -1,4 +1,5 @@
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 class Assert {
@@ -55,5 +56,10 @@ class Assert {
                 item, result.size(), result, expect.size(), expect));
       }
     }
+  }
+
+  public static void assertEquals(int[] result, int[] expect) {
+    assertEquals(Arrays.equals(result, expect),
+        String.format("result: %s expect: %s", Arrays.toString(result), Arrays.toString(expect)));
   }
 }
