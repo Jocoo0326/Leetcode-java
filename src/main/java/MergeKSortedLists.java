@@ -12,6 +12,7 @@ class MergeKSortedLists {
     Assert.assertEquals(mergeKLists(lists).toString(), "1->1->2->3->4->4->5->6");
   }
 
+  // O(N log(k)) k is number of linked lists, N is total number of nodes in the final linked list
   public static ListNode mergeKLists(ListNode[] lists) {
     if (lists == null)
       return null;
@@ -44,6 +45,7 @@ class MergeKSortedLists {
     return dummyHead.next;
   }
 
+  // O(kN)
   public static ListNode amergeKLists(ListNode[] lists) {
     if (lists == null)
       return null;
