@@ -3,6 +3,9 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+ReverseNodeInKGroup:
+	$(call run_java_file,ReverseNodeInKGroup)
+
 GenerateParentheses:
 	$(call run_java_file,GenerateParentheses)
 
