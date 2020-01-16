@@ -1,3 +1,6 @@
+
+import java.util.LinkedList;
+import java.util.List;
 class SwapNodesInPairs {
   public static void main(String[] args) {
     int[] nodes = {2, 4, 3, 5, 7, 9, 10}; //, 4, 3, 5, 7, 8};
@@ -6,6 +9,16 @@ class SwapNodesInPairs {
   }
 
   public static ListNode swapPairs(ListNode head) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+    ListNode n = head.next;
+    head.next = swapPairs(n.next);
+    n.next = head;
+    return n;
+  }
+
+  public static ListNode swapPairsLoop(ListNode head) {
     if (head == null)
       return null;
     ListNode dummyNode = new ListNode(0);
