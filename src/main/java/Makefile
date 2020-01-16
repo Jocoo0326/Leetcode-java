@@ -3,6 +3,9 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+RemoveElement:
+	$(call run_java_file,RemoveElement)
+
 RemoveDuplicatesFromSortedArray:
 	$(call run_java_file,RemoveDuplicatesFromSortedArray)
 
