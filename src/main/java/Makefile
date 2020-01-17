@@ -3,6 +3,9 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+DivideTwoIntegers:
+	$(call run_java_file,DivideTwoIntegers)
+
 ImplementStrStr:
 	$(call run_java_file,ImplementStrStr)
 
