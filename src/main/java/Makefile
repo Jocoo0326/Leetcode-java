@@ -3,6 +3,10 @@ define run_java_file
 	javac $(1).java && java $(1)
 endef
 
+define countAlgorithms
+	expr `ls *.java | wc -l` - 2
+endef
+
 DivideTwoIntegers:
 	$(call run_java_file,DivideTwoIntegers)
 
@@ -101,6 +105,9 @@ addTwoNumbers:
 
 twoSum:
 	$(call run_java_file,TwoSum)
+
+count:
+	@$(call countAlgorithms)
 
 clean:
 	rm -rf *.class
