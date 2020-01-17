@@ -7,6 +7,9 @@ define countAlgorithms
 	expr `ls *.java | wc -l` - 2
 endef
 
+SubstringWithConcatenationOfAllWords:
+	$(call run_java_file,SubstringWithConcatenationOfAllWords)
+
 DivideTwoIntegers:
 	$(call run_java_file,DivideTwoIntegers)
 
