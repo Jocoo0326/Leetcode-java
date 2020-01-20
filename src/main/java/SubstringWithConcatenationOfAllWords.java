@@ -17,6 +17,7 @@ class SubstringWithConcatenationOfAllWords {
     Assert.assertEquals(findSubstring("a", new String[] {"a"}), Arrays.asList(0));
   }
 
+  // time: n = length(s) m = length(words) O(mn)
   public static List<Integer> findSubstring(String s, String[] words) {
     LinkedList<Integer> res = new LinkedList<>();
     if (s == null || words == null || s.isEmpty() || words.length == 0) {
