@@ -1,11 +1,14 @@
 
 define run_java_file
-	javac $(1).java && java $(1)
+	@javac $(1).java && java $(1) && echo 'Test passed!'
 endef
 
 define countAlgorithms
 	expr `ls *.java | wc -l` - 2
 endef
+
+NextPermutation:
+	$(call run_java_file,NextPermutation)
 
 SubstringWithConcatenationOfAllWords:
 	$(call run_java_file,SubstringWithConcatenationOfAllWords)
