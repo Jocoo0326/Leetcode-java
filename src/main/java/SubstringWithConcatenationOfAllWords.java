@@ -1,5 +1,6 @@
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 class SubstringWithConcatenationOfAllWords {
@@ -17,46 +18,34 @@ class SubstringWithConcatenationOfAllWords {
   }
 
   public static List<Integer> findSubstring(String s, String[] words) {
-    if (s == null || s.isEmpty() || words.length == 0) {
-      return Arrays.asList();
+    LinkedList<Integer> res = new LinkedList<>();
+    if (s == null || words == null || s.isEmpty() || words.length == 0) {
+      return res;
     }
     final int len = s.length();
     final int wordLen = words[0].length();
-    final List<String> matches = new LinkedList<>();
-    LinkedList<Integer> res = new LinkedList<>();
-    int[] indexes = new int[len];
-    for (int i = 0; i < words.length; i++) {
-      int lastIndex = -1;
-      matches.add(words[i]);
-      while (lastIndex + wordLen < len) {
-        int index = -1;
-        if ((index = s.indexOf(words[i], ++lastIndex)) != -1) {
-          lastIndex = index;
-          indexes[index] = i + 1;
-        }
-      }
+    final int numWords = words.length;
+    HashMap<String, Integer> matches = new HashMap<>();
+    for (String item : words) {
+      matches.put(item, matches.getOrDefault(item, 0) + 1);
     }
-    matches.sort(null);
-    System.out.println(Arrays.toString(indexes));
-
-    for (int j = 0; j < indexes.length; j++) {
-      if (indexes[j] == 0) {
-        continue;
-      }
-      LinkedList<String> set = new LinkedList<>();
-      for (int i = j; i < len; i += wordLen) {
-        if (indexes[i] == 0) {
+    for (int i = 0; i < len - numWords * wordLen + 1; i++) {
+      int num = 0;
+      HashMap<String, Integer> target = new HashMap<>();
+      while (num < numWords) {
+        String child = s.substring(i + num * wordLen, i + (num + 1) * wordLen);
+        if (!matches.containsKey(child)) {
           break;
         } else {
-          set.add(words[indexes[i] - 1]);
-          if (set.size() == words.length) {
-            set.sort(null);
-            if (matches.equals(set)) {
-              res.add(j);
-            }
+          if (matches.get(child) == target.getOrDefault(child, 0)) {
             break;
           }
+          target.put(child, target.getOrDefault(child, 0) + 1);
         }
+        num++;
+      }
+      if (num == numWords) {
+        res.add(i);
       }
     }
 
