@@ -7,6 +7,9 @@ define countAlgorithms
 	expr `ls *.java | wc -l` - 2
 endef
 
+SearchInRotatedSortedArray:
+	$(call run_java_file,SearchInRotatedSortedArray)
+
 LongestValidParentheses:
 	$(call run_java_file,LongestValidParentheses)
 
