@@ -7,6 +7,9 @@ define countAlgorithms
 	expr `ls *.java | wc -l` - 2
 endef
 
+FindFirstAndLastPositionOfElementInSortedArray:
+	$(call run_java_file,FindFirstAndLastPositionOfElementInSortedArray)
+
 SearchInRotatedSortedArray:
 	$(call run_java_file,SearchInRotatedSortedArray)
 
