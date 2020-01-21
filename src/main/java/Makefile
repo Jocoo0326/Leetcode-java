@@ -1,11 +1,14 @@
 
 define run_java_file
-	@javac $(1).java && java $(1) && echo 'Test passed!'
+	@javac $(1).java && java $(1) && echo "Test $(1) passed!"
 endef
 
 define countAlgorithms
 	expr `ls *.java | wc -l` - 2
 endef
+
+LongestValidParentheses:
+	$(call run_java_file,LongestValidParentheses)
 
 NextPermutation:
 	$(call run_java_file,NextPermutation)
