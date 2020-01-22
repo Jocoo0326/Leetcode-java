@@ -105,4 +105,47 @@ class Assert {
     assertEquals(Arrays.equals(result, expect),
         String.format("result: %s expect: %s", Arrays.toString(result), Arrays.toString(expect)));
   }
+
+  public static boolean arraysEquals(char[][] result, char[][] expect) {
+    if (result == expect) {
+      return true;
+    }
+    if (result == null || expect == null) {
+      return false;
+    }
+    int length = result.length;
+    if (length != expect.length) {
+      return false;
+    }
+    for (int i = 0; i < length; i++) {
+      if (!Arrays.equals(result[i], expect[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public static String arraysToString(char[][] arr) {
+    if (arr == null) {
+      return "null";
+    }
+    int iMax = arr.length - 1;
+    if (iMax == -1) {
+      return "[]";
+    }
+    StringBuilder b = new StringBuilder();
+    b.append("[\n");
+    for (int i = 0;; i++) {
+      b.append(Arrays.toString(arr[i]));
+      if (i == iMax) {
+        return b.append("\n]").toString();
+      }
+      b.append('\n');
+    }
+  }
+
+  public static void assertEquals(char[][] result, char[][] expect) {
+    assertEquals(arraysEquals(result, expect),
+        String.format("result: %s expect: %s", arraysToString(result), arraysToString(expect)));
+  }
 }

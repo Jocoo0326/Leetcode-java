@@ -7,6 +7,9 @@ define countAlgorithms
 	expr `ls *.java | wc -l` - 2
 endef
 
+SudokuSolver:
+	$(call run_java_file,SudokuSolver)
+
 ValidSudoku:
 	$(call run_java_file,ValidSudoku)
 
