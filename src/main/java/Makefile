@@ -7,6 +7,9 @@ define countAlgorithms
 	expr `ls *.java | wc -l` - 2
 endef
 
+CountAndSay:
+	$(call run_java_file,CountAndSay)
+
 SudokuSolver:
 	$(call run_java_file,SudokuSolver)
 
