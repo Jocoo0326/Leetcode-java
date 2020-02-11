@@ -1,11 +1,29 @@
 
 define run_java_file
-	@javac $(1).java && java $(1) && echo "Test $(1) passed!"
+	@javac -Xlint:unchecked $(1).java && java $(1) && echo "Test $(1) passed!"
 endef
 
 define countAlgorithms
 	expr `ls *.java | wc -l` - 2
 endef
+
+PermutationsII:
+	$(call run_java_file,PermutationsII)
+
+Permutations:
+	$(call run_java_file,Permutations)
+
+SubsetsII:
+	$(call run_java_file,SubsetsII)
+
+Subsets:
+	$(call run_java_file,Subsets)
+
+Backtrack:
+	$(call run_java_file,Backtrack)
+
+CombinationSum:
+	$(call run_java_file,CombinationSum)
 
 CountAndSay:
 	$(call run_java_file,CountAndSay)
