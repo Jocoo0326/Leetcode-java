@@ -7,6 +7,9 @@ define countAlgorithms
 	expr `ls *.java | wc -l` - 2
 endef
 
+FirstMissingPositive:
+	$(call run_java_file,FirstMissingPositive)
+
 PermutationsII:
 	$(call run_java_file,PermutationsII)
 
@@ -21,6 +24,9 @@ Subsets:
 
 Backtrack:
 	$(call run_java_file,Backtrack)
+
+CombinationSumII:
+	$(call run_java_file,CombinationSumII)
 
 CombinationSum:
 	$(call run_java_file,CombinationSum)

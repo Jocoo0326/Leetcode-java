@@ -18,17 +18,11 @@ class CombinationSum {
   }
 
   private static List<List<Integer>> ans = new LinkedList<>();
-  private static LinkedList<Integer> makecopy(List<Integer> res) {
-    LinkedList<Integer> val = new LinkedList<>();
-    for (Integer i : res) {
-      val.add(i);
-    }
-    return val;
-  }
+
   private static boolean backtrack(int[] candidates, int sum, int target, List<Integer> res) {
     boolean b = false;
     for (int cand : candidates) {
-      LinkedList<Integer> backup = makecopy(res);
+      LinkedList<Integer> backup = new LinkedList<>(res);
       Integer last = backup.peekLast();
       last = last == null ? 0 : last;
       if (last <= cand) {
