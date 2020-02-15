@@ -7,6 +7,9 @@ define countAlgorithms
 	expr `ls *.java | wc -l` - 2
 endef
 
+TrappingRainWater:
+	$(call run_java_file,TrappingRainWater)
+
 FirstMissingPositive:
 	$(call run_java_file,FirstMissingPositive)
 
