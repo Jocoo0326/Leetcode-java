@@ -7,6 +7,9 @@ define countAlgorithms
 	expr `ls *.java | wc -l` - 2
 endef
 
+MultiplyStrings:
+	$(call run_java_file,MultiplyStrings)
+
 TrappingRainWater:
 	$(call run_java_file,TrappingRainWater)
 
