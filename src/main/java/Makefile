@@ -7,6 +7,9 @@ define countAlgorithms
 	expr `ls *.java | wc -l` - 2
 endef
 
+WildcardMatching:
+	$(call run_java_file,WildcardMatching)
+
 MultiplyStrings:
 	$(call run_java_file,MultiplyStrings)
 
