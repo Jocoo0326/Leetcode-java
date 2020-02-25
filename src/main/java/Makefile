@@ -7,6 +7,9 @@ define countAlgorithms
 	expr `ls *.java | wc -l` - 2
 endef
 
+JumpGameII:
+	$(call run_java_file,JumpGameII)
+
 WildcardMatching:
 	$(call run_java_file,WildcardMatching)
 
