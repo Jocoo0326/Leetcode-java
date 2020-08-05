@@ -7,6 +7,18 @@ define countAlgorithms
 	expr `ls *.java | wc -l` - 2
 endef
 
+FindFirstLargerNum:
+	$(call run_java_file,FindFirstLargerNum)
+
+PrintTreeInDepth:
+	$(call run_java_file,PrintTreeInDepth)
+
+ReverseEachWordInString:
+	$(call run_java_file,ReverseEachWordInString)
+
+RemoveDuplicateElements:
+	$(call run_java_file,RemoveDuplicateElements)
+
 JumpGameII:
 	$(call run_java_file,JumpGameII)
 
