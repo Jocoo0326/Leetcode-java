@@ -7,7 +7,27 @@ class SearchInRotatedSortedArray {
   public static int search(int[] nums, int target) {
     // return searchRecursive(nums, target, 0, nums.length - 1);
     // return searchNonRecursive(nums, target);
-    return searchExcluding(nums, target);
+    // return searchExcluding(nums, target);
+    return findInRotatedSortArray(nums, target);
+  }
+
+  public static int findInRotatedSortArray(int[] nums, int val) {
+    int i = 0, j = nums.length - 1;
+    while (i <= j) {
+      int mid = (i + j) >>> 1;
+      if (val > nums[mid]) {
+        i = mid + 1;
+      } else if (val < nums[mid]) {
+        if (nums[i] > nums[j] && val < nums[i]) {
+          i = mid + 1;
+        } else {
+          j = mid - 1;
+        }
+      } else {
+        return i;
+      }
+    }
+    return -1;
   }
 
   public static int searchExcluding(int[] nums, int target) {
